@@ -41,19 +41,20 @@ sense.set_pixels(question_mark)
 ### For gentlemans-club members
 Here is an example with implementing set_pixel
 
-1. Create a branch which corresponds to the task you will work on
+1. Pick your task, and assign yourself to the issue so that people know that you will be working on it.
+2. Create a branch which corresponds to the task you will work on
     * `git checkout -b set_pixel`
         * `set_pixel` here refers to the branch name
-2. Implement set_pixel according to the issue, and test that it works as expected
-3. Commit your changes to your local repository
+3. Implement set_pixel according to the issue, and test that it works as expected
+4. Commit your changes to your local repository
     * `git add .`
     * `git commit -m "Implements #6"`
         * Note: #6 corresponds to the issue number
-4. Push your changes to origin
+5. Push your changes to origin
     * `git push origin set_pixel`
         * `set_pixel` here refers to the branch name
-5. Create a pull request to master, if the branch can be merged to master automatically you are free to do so.
-6. Delete the branch, close the corresponding issue, and move the task in the project to completed.
+6. Create a pull request to master, if the branch can be merged to master automatically you are free to do so.
+7. Delete the branch, close the corresponding issue, and move the task in the project to completed.
 
 ### For anyone else
 
