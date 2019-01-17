@@ -27,15 +27,11 @@ class NotPi:
 
     def update(self):
         rects = []
-        posy = -1
-        posx = -1
         for idx, pixel in enumerate(self.pixels):
-            if idx % 8 == 0:
-                posx = 0
-                posy += 1
+            x = idx % 8
+            y = idx // 8
 
-            rects.append((pygame.Rect(posx*self.scale, posy*self.scale, self.scale, self.scale), pixel))
-            posx += 1
+            rects.append((pygame.Rect(x*self.scale, y*self.scale, self.scale, self.scale), pixel))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
