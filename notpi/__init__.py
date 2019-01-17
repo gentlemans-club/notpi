@@ -11,12 +11,54 @@ class NotPi:
         self.screen = pygame.display.set_mode(self.size)
         self.update()
 
+    def __index_to_xy(self, index):
+        return (index % 8, index // 8)
+
     def set_pixels(self, pixels):
         self.pixels = pixels
         self.update()
 
     def get_pixels(self):
         return self.pixels
+
+    def set_pixel(self, x, y, *args):
+        pixel_error = 'Pixel arguments must be given as (r, g, b) or r, g, b'
+
+        if len(args) == 1:
+            pixel = args[0]
+            if len(pixel) != 3:
+                raise ValueError(pixel_error)
+        elif len(args) == 3:
+            pixel = args
+        else:
+            raise ValueError(pixel_error)
+
+        if x > 7 or x < 0:
+            raise ValueError('X position must be between 0 and 7')
+
+        if y > 7 or y < 0:
+            raise ValueError('Y position must be between 0 and 7')
+
+        for element in pixel:
+            if element > 255 or element < 0:
+                raise ValueError('Pixel elements must be between 0 and 255')
+
+        self.pixels[x + y*8] = list(pixel)
+
+    def get_pixel(self, x, y):
+        """
+        Returns a list of [R,G,B] representing the pixel specified by x and y
+        on the LED matrix. Top left = 0,0 Bottom right = 7,7
+        """
+
+        if x > 7 or x < 0:
+            raise ValueError('X position must be between 0 and 7')
+
+        if y > 7 or y < 0:
+            raise ValueError('Y position must be between 0 and 7')
+
+        return self.pixels[x + y*8]
+
 
     def flip_v(self, redraw=True):
         """
@@ -30,8 +72,7 @@ class NotPi:
     def update(self):
         rects = []
         for idx, pixel in enumerate(self.pixels):
-            x = idx % 8
-            y = idx // 8
+            x, y = self.__index_to_xy(idx)
 
             rects.append((pygame.Rect(x*self.scale, y*self.scale, self.scale, self.scale), pixel))
 
