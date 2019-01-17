@@ -4,8 +4,7 @@ import numpy as np
 
 class NotPi:
     def __init__(self, scale=16):
-        black = [0, 0, 0]
-        self.pixels = [black] * 64
+        self.pixels = [[0, 0, 0]] * 64
         self.scale = scale
         pygame.init()
         self.size = width, height = 8*self.scale, 8*self.scale
@@ -15,6 +14,9 @@ class NotPi:
     def set_pixels(self, pixels):
         self.pixels = pixels
         self.update()
+
+    def get_pixels(self):
+        return self.pixels
 
     def flip_v(self, redraw=True):
         """
