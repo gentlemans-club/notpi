@@ -2,22 +2,37 @@
 
 A simple Sense HAT emulator using PyGame.
 
+NotPi bases itself on the API of [sense-hat](https://github.com/RPi-Distro/python-sense-hat).
+The goal is to enable users to develop software for the Sense HAT on any platform supported by PyGame,
+and have that same code work as expected on the Sense HAT itself.
+
+Currently, the plan is primarily to provide functions to draw to the 8x8 matrix, and also to handle button input.
+
 ## Installation
 
 After cloning, run:
 
 ```sh
-pip install  .
+pip install .
 ```
 
 ## Usage
 
-Only a small subset of the sense-hat library's functions has been implemented. Here is the current status of functionality: https://github.com/gentlemans-club/notpi/projects/1
+Only a small subset of the sense-hat library's functions has been implemented.
+Here is the current status of functionality: https://github.com/gentlemans-club/notpi/projects/1
+
+The following example shows a way in which some code can be run on `sense-hat` if it is available, while also
+being able to run locally on a computer using NotPi.
 
 ```python
-from notpi import NotPi
-
-sense = NotPi()
+try:
+    # use SenseHat if available
+    from sense-hat import SenseHat
+    sense = SenseHat()
+except ImportError:
+    # if not, fall back to NotPi
+    from notpi import NotPi
+    sense = NotPi()
 
 X = [255, 0, 0]  # Red
 O = [255, 255, 255]  # White

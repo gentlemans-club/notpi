@@ -44,6 +44,7 @@ class NotPi:
                 raise ValueError('Pixel elements must be between 0 and 255')
 
         self.pixels[x + y*8] = list(pixel)
+        self.update()
 
     def get_pixel(self, x, y):
         """
