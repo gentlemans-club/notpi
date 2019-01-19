@@ -25,6 +25,8 @@ class Stick:
                 key = "down"
             elif event.key == pygame.K_RETURN:
                 key = "enter"
+            else:
+                continue
             eventlist.append(Event(action, key))
         return eventlist
 
