@@ -1,6 +1,7 @@
 import pygame
 import sys
 import numpy as np
+from notpi.stick import Stick
 
 class NotPi:
     def __init__(self, scale=16):
@@ -9,10 +10,18 @@ class NotPi:
         pygame.init()
         self.size = width, height = 8*self.scale, 8*self.scale
         self.screen = pygame.display.set_mode(self.size)
+        self.stick = Stick(pygame.event)
         self.update()
 
     def __index_to_xy(self, index):
         return (index % 8, index // 8)
+
+    def clear(self):
+        self.pixels = [[0, 0, 0]] * 64
+        self.update()
+
+    def show_message(self, message):
+        print(message)
 
     def set_pixels(self, pixels):
         self.pixels = pixels
@@ -76,9 +85,6 @@ class NotPi:
             x, y = self.__index_to_xy(idx)
 
             rects.append((pygame.Rect(x*self.scale, y*self.scale, self.scale, self.scale), pixel))
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: sys.exit()
 
         self.screen.fill((0,0,0))
         for rect, color in rects:
