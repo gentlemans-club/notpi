@@ -16,12 +16,38 @@ class NotPi:
     def __index_to_xy(self, index):
         return (index % 8, index // 8)
 
-    def clear(self):
-        self.pixels = [[0, 0, 0]] * 64
-        self.update()
+    def clear(self, *args):
+        """
+        Clears the LED matrix with a single colour, default is black / off
+        e.g. ap.clear()
+        or
+        ap.clear(r, g, b)
+        or
+        colour = (r, g, b)
+        ap.clear(colour)
+        """
 
-    def show_message(self, message):
-        print(message)
+        black = (0, 0, 0)  # default
+
+        if len(args) == 0:
+            colour = black
+        elif len(args) == 1:
+            colour = args[0]
+        elif len(args) == 3:
+            colour = args
+        else:
+            raise ValueError('Pixel arguments must be given as (r, g, b) or r, g, b')
+
+        self.set_pixels([colour] * 64)
+
+    def show_message(
+        self,
+        text_string,
+        scroll_speed=.1,
+        text_colour=[255, 255, 255],
+        back_colour=[0, 0, 0]
+    ):
+        print(text_string)
 
     def set_pixels(self, pixels):
         self.pixels = pixels
