@@ -11,6 +11,7 @@ class NotPi:
         self.size = width, height = 8*self.scale, 8*self.scale
         self.screen = pygame.display.set_mode(self.size)
         self.stick = Stick(pygame.event)
+        self.low_light = False
         self.update()
 
     def __index_to_xy(self, index):
