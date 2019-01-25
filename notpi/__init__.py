@@ -1,6 +1,8 @@
 import pygame
 import sys
+import os
 import numpy as np
+from PIL import Image
 from notpi.stick import Stick
 
 class NotPi:
@@ -47,8 +49,25 @@ class NotPi:
         scroll_speed=.1,
         text_colour=[255, 255, 255],
         back_colour=[0, 0, 0]
-    ):
+        ):
         print(text_string)
+
+    def show_letter(
+        self,
+        s,
+        text_colour=[255, 255, 255],
+        back_colour=[0, 0, 0]
+        ):
+
+        """
+        Displays a single text character on the LED matrix using the specified
+        colours
+        """
+
+        if len(s) > 1:
+            raise ValueError('Only one character may be passed into this method')
+
+        print(s)
 
     def set_pixels(self, pixels):
         self.pixels = pixels
@@ -99,6 +118,22 @@ class NotPi:
 
         return self.pixels[x + y*8]
 
+    def show_image(self, file_path, redraw=True):
+        """
+        Accepts a path to an 8 x 8 image file and updates the LED matrix with
+        the image
+        """
+
+        if not os.path.exists(file_path):
+            raise IOError('%s not found' % file_path)
+
+        img = Image.open(file_path).convert('RGB')
+        pixel_list = list(map(list, img.getdata()))
+
+        if redraw:
+            self.set_pixels(pixel_list)
+
+        return pixel_list
 
     def flip_v(self, redraw=True):
         """
