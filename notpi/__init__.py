@@ -47,8 +47,25 @@ class NotPi:
         scroll_speed=.1,
         text_colour=[255, 255, 255],
         back_colour=[0, 0, 0]
-    ):
+        ):
         print(text_string)
+
+    def show_letter(
+        self,
+        s,
+        text_colour=[255, 255, 255],
+        back_colour=[0, 0, 0]
+        ):
+
+        """
+        Displays a single text character on the LED matrix using the specified
+        colours
+        """
+
+        if len(s) > 1:
+            raise ValueError('Only one character may be passed into this method')
+
+        print(s)
 
     def set_pixels(self, pixels):
         self.pixels = pixels
