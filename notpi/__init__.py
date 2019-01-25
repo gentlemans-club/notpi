@@ -57,6 +57,9 @@ class NotPi:
     def get_pixels(self):
         return self.pixels
 
+    def set_rotation(self, r=0, redraw=True):
+        self.update()
+
     def set_pixel(self, x, y, *args):
         pixel_error = 'Pixel arguments must be given as (r, g, b) or r, g, b'
 
@@ -102,6 +105,14 @@ class NotPi:
         Flips the image on the canvas vertically.
         """
         self.pixels = np.flipud(self.pixels)
+        if redraw:
+            self.update()
+
+    def flip_h(self, redraw=True):
+        """
+        Flips the image on the canvas horizontally.
+        """
+        self.pixels = np.fliplr(self.pixels)
         if redraw:
             self.update()
 
