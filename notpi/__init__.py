@@ -118,7 +118,7 @@ class NotPi:
 
         return self.pixels[x + y*8]
 
-    def show_image(self, file_path, redraw=True):
+    def load_image(self, file_path, redraw=True):
         """
         Accepts a path to an 8 x 8 image file and updates the LED matrix with
         the image
