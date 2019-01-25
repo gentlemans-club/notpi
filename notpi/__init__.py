@@ -1,6 +1,8 @@
 import pygame
 import sys
+import os
 import numpy as np
+from PIL import Image
 from notpi.stick import Stick
 
 class NotPi:
@@ -113,6 +115,22 @@ class NotPi:
 
         return self.pixels[x + y*8]
 
+    def show_image(self, file_path, redraw=True):
+        """
+        Accepts a path to an 8 x 8 image file and updates the LED matrix with
+        the image
+        """
+
+        if not os.path.exists(file_path):
+            raise IOError('%s not found' % file_path)
+
+        img = Image.open(file_path).convert('RGB')
+        pixel_list = list(map(list, img.getdata()))
+
+        if redraw:
+            self.set_pixels(pixel_list)
+
+        return pixel_list
 
     def flip_v(self, redraw=True):
         """
