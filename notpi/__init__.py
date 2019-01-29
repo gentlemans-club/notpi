@@ -17,6 +17,9 @@ class NotPi:
         self.update()
 
     def __index_to_xy(self, index):
+        """
+        A helper function which returns (x, y) from an index. 
+        """
         return (index % 8, index // 8)
 
     def clear(self, *args):
@@ -50,6 +53,11 @@ class NotPi:
         text_colour=[255, 255, 255],
         back_colour=[0, 0, 0]
         ):
+        """
+        Prints a string of text to the terminal. This is a simple replacement
+        for sense-hat's implementation which scrolls a string of text across
+        the LED matrix using the specified speed and colours
+        """
         print(text_string)
 
     def show_letter(
@@ -60,8 +68,9 @@ class NotPi:
         ):
 
         """
-        Displays a single text character on the LED matrix using the specified
-        colours
+        Prints a single text character to the terminal. This is a simple
+        replacement for sense-hat's implementation which displays a single
+        text character on the LED matrix using the specified colours
         """
 
         if len(s) > 1:
@@ -70,16 +79,39 @@ class NotPi:
         print(s)
 
     def set_pixels(self, pixels):
+        """
+        Accepts a list containing 64 smaller lists of [R,G,B] pixels and
+        updates the LED matrix. R,G,B elements must intergers between 0
+        and 255
+        """
         self.pixels = pixels
         self.update()
 
     def get_pixels(self):
+        """
+        Returns a list containing 64 smaller lists of [R,G,B] pixels
+        representing what is currently displayed on the LED matrix
+        """
+
         return self.pixels
 
     def set_rotation(self, r=0, redraw=True):
+        """
+        Does nothing except update the screen. The sense-hat implementation
+        sets the LED matrix rotation for viewing, adjust if the Pi is upside
+        down or sideways. 0 is with the Pi HDMI port facing downwards
+        """
         self.update()
 
     def set_pixel(self, x, y, *args):
+        """
+        Updates the single [R,G,B] pixel specified by x and y on the LED matrix
+        Top left = 0,0 Bottom right = 7,7
+        e.g. ap.set_pixel(x, y, r, g, b)
+        or
+        pixel = (r, g, b)
+        ap.set_pixel(x, y, pixel)
+        """
         pixel_error = 'Pixel arguments must be given as (r, g, b) or r, g, b'
 
         if len(args) == 1:
@@ -137,7 +169,7 @@ class NotPi:
 
     def flip_v(self, redraw=True):
         """
-        Flips the image on the canvas vertically.
+        Flips the image on the canvas vertically
         """
         self.pixels = np.flipud(self.pixels)
         if redraw:
@@ -145,7 +177,7 @@ class NotPi:
 
     def flip_h(self, redraw=True):
         """
-        Flips the image on the canvas horizontally.
+        Flips the image on the canvas horizontally
         """
         self.pixels = np.fliplr(self.pixels)
         if redraw:
@@ -153,6 +185,9 @@ class NotPi:
 
 
     def update(self):
+        """
+        Updates the NotPi screen according to the state of self.pixels
+        """
         rects = []
         for idx, pixel in enumerate(self.pixels):
             x, y = self.__index_to_xy(idx)
