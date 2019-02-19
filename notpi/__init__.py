@@ -6,19 +6,21 @@ from PIL import Image
 from notpi.stick import Stick
 
 class NotPi:
-    def __init__(self, scale=16):
+    def __init__(self, scale=16, init_pygame=True):
         self.pixels = [[0, 0, 0]] * 64
         self.scale = scale
-        pygame.init()
         self.size = width, height = 8*self.scale, 8*self.scale
-        self.screen = pygame.display.set_mode(self.size)
         self.stick = Stick(pygame.event)
         self.low_light = False
+        self.init_pygame = init_pygame
+        if self.init_pygame:
+            pygame.init()
+            self.screen = pygame.display.set_mode(self.size)
         self.update()
 
     def __index_to_xy(self, index):
         """
-        A helper function which returns (x, y) from an index. 
+        A helper function which returns (x, y) from an index.
         """
         return (index % 8, index // 8)
 
@@ -33,14 +35,14 @@ class NotPi:
         ap.clear(colour)
         """
 
-        black = (0, 0, 0)  # default
+        black = [0, 0, 0]  # default
 
         if len(args) == 0:
             colour = black
         elif len(args) == 1:
-            colour = args[0]
+            colour = list(args[0])
         elif len(args) == 3:
-            colour = args
+            colour = list(args)
         else:
             raise ValueError('Pixel arguments must be given as (r, g, b) or r, g, b')
 
@@ -84,6 +86,9 @@ class NotPi:
         updates the LED matrix. R,G,B elements must intergers between 0
         and 255
         """
+        if len(pixels) != 64:
+            raise ValueError('The pixel list must be 64 elements long.')
+
         self.pixels = pixels
         self.update()
 
@@ -188,6 +193,9 @@ class NotPi:
         """
         Updates the NotPi screen according to the state of self.pixels
         """
+        if not self.init_pygame:
+            return
+
         rects = []
         for idx, pixel in enumerate(self.pixels):
             x, y = self.__index_to_xy(idx)
