@@ -42,3 +42,16 @@ def test_flip_v():
 
     sense.flip_v()
     assert all(x==255 for x in sense.get_pixel(0, 7))
+
+
+def test_flip_h():
+    sense = NotPi(init_pygame=False)
+
+    sense.set_pixel(0,0, [255, 255, 255])
+
+    print(sense.get_pixel(0, 0))
+
+    assert sense.get_pixel(0, 0) == [255, 255, 255]
+
+    sense.flip_h()
+    assert sense.get_pixel(7, 0) == [255, 255, 255]
