@@ -176,7 +176,13 @@ class NotPi:
         """
         Flips the image on the canvas vertically
         """
-        self.pixels = np.flipud(self.pixels)
+        pixel_list = self.get_pixels()
+        flipped = []
+        for i in reversed(range(8)):
+            offset = i * 8
+            flipped.extend(pixel_list[offset:offset + 8])
+
+        self.pixels = flipped
         if redraw:
             self.update()
 
@@ -184,7 +190,12 @@ class NotPi:
         """
         Flips the image on the canvas horizontally
         """
-        self.pixels = np.fliplr(self.pixels)
+        pixel_list = self.get_pixels()
+        flipped = []
+        for i in range(8):
+            offset = i * 8
+            flipped.extend(reversed(pixel_list[offset:offset + 8]))
+        self.pixels = flipped
         if redraw:
             self.update()
 
