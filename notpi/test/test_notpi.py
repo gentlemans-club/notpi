@@ -70,3 +70,12 @@ def test_load_image():
     assert sense.get_pixel(1, 2) == [55, 161, 146]
 
     assert sense.get_pixel(0, 2) == [212, 166, 118]
+
+def test_set_pixel():
+    sense = NotPi(init_pygame=False)
+
+    assert all(x==[0, 0, 0] for x in sense.get_pixels())
+
+    sense.set_pixel(0, 0, [255, 255, 255])
+
+    assert sense.get_pixel(0, 0) == [255, 255, 255]
