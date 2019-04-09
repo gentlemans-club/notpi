@@ -1,4 +1,5 @@
 import pytest
+from os import path
 from notpi import NotPi
 
 def test_clear():
@@ -55,3 +56,17 @@ def test_flip_h():
 
     sense.flip_h()
     assert sense.get_pixel(7, 0) == [255, 255, 255]
+
+def test_load_image():
+    sense = NotPi(init_pygame=False)
+
+    assert all(x==[0, 0, 0] for x in sense.get_pixels())
+
+    testdir = path.dirname(path.abspath(__file__))
+    sense.load_image(path.join(testdir, "test.png"))
+
+    assert sense.get_pixel(2, 2) == [39, 130, 162]
+
+    assert sense.get_pixel(1, 2) == [55, 161, 146]
+
+    assert sense.get_pixel(0, 2) == [212, 166, 118]
