@@ -1,4 +1,28 @@
 # notpi
+*This is an open source project part of the course IS-213, which is a course given on the University of Agder in Norway.* 
+
+### THE LABYRINTH OF DOOM
+
+Have a look at our [wiki](https://github.com/gentlemans-club/notpi/wiki) for information about creating or editing levels.
+
+**Developers:**
+
+* [Elias Kløverød Brynestad](https://github.com/KodeGeniElias)
+* [Kent Daleng](https://github.com/chinatsu)
+* [Julie Hodne Gundersen](https://github.com/Juliehg)
+* [Yaguel van der Meij](https://github.com/Yagooza)
+* [Phuong Ha Pham](https://github.com/fongha)
+
+
+**Included repositories**
+> The main repository for use with the Raspberry Pi
+* [ledgame](https://github.com/gentlemans-club/ledgame)
+
+> Secondary repository for use on platforms such as MacOS, Windows & Linux
+* [notpi](https://github.com/gentlemans-club/notpi) 
+
+
+----
 
 A simple Sense HAT emulator using PyGame.
 
