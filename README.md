@@ -51,7 +51,7 @@ being able to run locally on a computer using NotPi.
 ```python
 try:
     # use SenseHat if available
-    from sense-hat import SenseHat
+    from sense_hat import SenseHat
     sense = SenseHat()
 except ImportError:
     # if not, fall back to NotPi
