@@ -1,10 +1,6 @@
 # notpi
 *This is an open source project part of the course IS-213, which is a course given on the University of Agder in Norway.* 
 
-### THE LABYRINTH OF DOOM
-
-Have a look at our [wiki](https://github.com/gentlemans-club/notpi/wiki) for information about creating or editing levels. We have also included a Jupyter [notebook](https://github.com/gentlemans-club/ledgame/blob/master/ledgame.ipynb) to be able to illustrate how the code works.
-
 **Developers:**
 
 * [Elias Kløverød Brynestad](https://github.com/KodeGeniElias)
@@ -21,8 +17,9 @@ Have a look at our [wiki](https://github.com/gentlemans-club/notpi/wiki) for inf
 > Secondary repository for use on platforms such as MacOS, Windows & Linux
 * [notpi](https://github.com/gentlemans-club/notpi) 
 
-
 ----
+
+## What 
 
 A simple Sense HAT emulator using PyGame.
 
@@ -31,6 +28,15 @@ The goal is to enable users to develop software for the Sense HAT on any platfor
 and have that same code work as expected on the Sense HAT itself.
 
 Currently, the plan is primarily to provide functions to draw to the 8x8 matrix, and also to handle button input.
+
+## Why
+
+The project was started from a need to have a development environment without the need of a Raspberry Pi.
+
+Research suggested that there are two existing emulators; [sense-emu](https://sense-emu.readthedocs.io/en/v1.1/),
+and [trinket.io](https://trinket.io/sense-hat)'s web based emulator. The former is primarily meant to be run on
+a Raspberry Pi, and as such proved to be difficult to set up on Mac OS or Windows. 
+The drawback of the latter is primarily that it is clumsy to use version control software with it.
 
 ## Installation
 
